@@ -240,6 +240,10 @@ class Yoyo
     {
         $component = static::request()->get('component');
 
+        if (is_null($component)) {
+            throw new Exceptions\IncompleteComponentParamInRequest();
+        }
+
         $parts = array_filter(explode('/', $component));
 
         if (empty($parts)) {
